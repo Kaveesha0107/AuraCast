@@ -1,0 +1,19 @@
+{
+  "List": [
+    {"CityCode": 2147714, "CityName": "Sydney", "Country": "Australia"},
+    {"CityCode": 1850147, "CityName": "Tokyo", "Country": "Japan"},
+    {"CityCode": 1796236, "CityName": "Shanghai", "Country": "China"},
+    {"CityCode": 1248991, "CityName": "Colombo", "Country": "Sri Lanka"},
+    {"CityCode": 1275339, "CityName": "Mumbai", "Country": "India"},
+    {"CityCode": 2643743, "CityName": "London", "Country": "United Kingdom"},
+    {"CityCode": 5128581, "CityName": "New York", "Country": "USA"},
+    {"CityCode": 2950159, "CityName": "Berlin", "Country": "Germany"},
+    {"CityCode": 2988507, "CityName": "Paris", "Country": "France"},
+    {"CityCode": 3435910, "CityName": "Buenos Aires", "Country": "Argentina"},
+    {"CityCode": 360630, "CityName": "Cairo", "Country": "Egypt"},
+    {"CityCode": 524901, "CityName": "Moscow", "Country": "Russia"},
+    {"CityCode": 1609350, "CityName": "Bangkok", "Country": "Thailand"},
+    {"CityCode": 1880252, "CityName": "Singapore", "Country": "Singapore"},
+    {"CityCode": 3530597, "CityName": "Mexico City", "Country": "Mexico"}
+  ]
+}
