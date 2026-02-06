@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const NodeCache = require('node-cache');
@@ -7,7 +8,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-const API_KEY = 'fd68cbf3f73579b20466cd0ae476cba7';
+const API_KEY = process.env.OPENWEATHER_API_KEY;
 const cache = new NodeCache({ stdTTL: 300 }); // 5 minutes cache
 
 //  Comfort Index Formula 
