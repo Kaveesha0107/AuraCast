@@ -136,7 +136,7 @@ function App() {
           </button>
           
           <div className="mt-12 text-white text-sm">
-            <p>Demo Credentials: careers@fidenz.com | Pass#fidenz</p>
+           
             <p className="mt-2 text-blue-200">Powered by OpenWeatherMap API</p>
           </div>
         </div>
