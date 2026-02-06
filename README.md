@@ -1,70 +1,182 @@
-# Getting Started with Create React App
+# 🌦️ AuraCast Weather Intelligence System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+AuraCast is a **professional-grade weather analytics dashboard** that ranks cities using a custom-designed **Comfort Index**. It delivers real-time weather insights, visualizes 7‑day temperature trends, and leverages **server-side caching** to optimize performance and API usage.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+* **Intelligent Ranking** – Automatically ranks cities using a weighted **Comfort Index** algorithm.
+* **Real-time Analytics** – Live weather data (temperature, humidity, visibility) via **OpenWeatherMap API**.
+* **Dynamic Visualizations** – Clean, professional **7-day temperature trend charts** with color-coded gradients.
+* **Smart Caching** – Server-side caching to handle high traffic and stay within API rate limits.
+* **Great UX** – Dark/Light mode support and fully responsive design (mobile & desktop).
+* **Secure Access** – User authentication powered by **Auth0**.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+### Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **React.js** – Component-based UI
+* **Tailwind CSS** – Utility-first styling + dark mode
+* **Lucide React** – Modern icon set
+* **Axios** – HTTP client for API requests
 
-### `npm run build`
+### Backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **Node.js & Express.js** – RESTful server environment
+* **Node-Cache** – In-memory caching for optimized data retrieval
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### External Services
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* **OpenWeatherMap API** – Global real-time weather data
+* **Auth0** – Authentication & identity management
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧪 Comfort Index Formula
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The **Comfort Index** quantifies how pleasant the weather feels for an average person. The score ranges from **0 to 100**.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Formula Components
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Temperature Score (T_score)**
+Ideal temperature: **22°C**
 
-## Learn More
+```
+T_score = 100 - |22 - CurrentTemp| × 3
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Humidity Score (H_score)**
+Ideal humidity: **45%**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+H_score = 100 - |45 - Humidity| × 1.5
+```
 
-### Code Splitting
+**Visibility Score (V_score)**
+Based on atmospheric clarity
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+V_score = (Visibility / 1000) × 10   (Capped at 100)
+```
 
-### Analyzing the Bundle Size
+### Final Score Calculation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+Comfort Index = (T_score × 0.5)
+              + (H_score × 0.3)
+              + (V_score × 0.2)
+```
 
-### Making a Progressive Web App
+### Weighting Rationale
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* **Temperature (50%)** – Primary driver of human comfort
+* **Humidity (30%)** – Strongly affects perceived temperature & breathing comfort
+* **Visibility (20%)** – Impacts psychological comfort and safety
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 💾 Cache Design
 
-### Deployment
+AuraCast uses a **server-side caching strategy** with `node-cache`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* **TTL (Time To Live):** 300 seconds (5 minutes)
+* **Flow:**
 
-### `npm run build` fails to minify
+  1. Request hits `/api/weather`
+  2. Cache **HIT** → return cached data
+  3. Cache **MISS** → fetch fresh data, compute Comfort Index, update cache
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Benefits
+
+* Faster response times
+* Reduced API calls
+* Protection against rate limiting
+* Consistent data across users
+
+---
+
+## 🔄 Trade-offs & Limitations
+
+* **Data Freshness vs Performance**
+  A 5-minute cache improves speed but may slightly delay real-time updates.
+
+* **Pseudo Trend Data**
+  Due to free-tier API limits, 7-day trends are simulated using controlled temperature variance.
+
+* **Fixed City List**
+  A predefined city set is used to maintain consistent ranking results for evaluation.
+
+---
+
+## 🚀 Setup Instructions
+
+Follow the steps below to run **AuraCast** locally.
+
+### 📋 Prerequisites
+
+* **Node.js** v14.0.0 or higher
+* **npm** v6.0.0 or higher
+* **OpenWeatherMap API Key**
+
+---
+
+### ⚙️ Installation & Setup
+
+#### 1️⃣ Clone the Repository
+
+```
+git clone <your-repository-link>
+cd aura-cast
+```
+
+---
+
+#### 2️⃣ Backend Setup
+
+```
+cd server
+npm install
+```
+
+Open `index.js` and add your OpenWeatherMap API key:
+
+```
+const API_KEY = 'your_openweathermap_api_key_here';
+```
+
+Start the backend server:
+
+```
+node index.js
+```
+
+Backend runs on:
+
+```
+http://localhost:5000
+```
+
+---
+
+#### 3️⃣ Frontend Setup
+
+Open a new terminal window:
+
+```
+cd frontend
+npm install
+npm start
+```
+
+Frontend runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
