@@ -165,7 +165,7 @@ app.get('/api/cache-debug', (req, res) => {
     });
 });
 
-// --- Health Check ---
+// Health Check 
 app.get('/api/health', (req, res) => {
     res.json({ 
         status: 'OK', 

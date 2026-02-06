@@ -129,8 +129,8 @@ Follow the steps below to run **AuraCast** locally.
 #### 1️⃣ Clone the Repository
 
 ```
-git clone <your-repository-link>
-cd aura-cast
+git clone https://github.com/Kaveesha0107/AuraCast.git
+cd AuraCast
 ```
 
 ---
@@ -138,14 +138,14 @@ cd aura-cast
 #### 2️⃣ Backend Setup
 
 ```
-cd server
+cd backend
 npm install
 ```
 
 Open `index.js` and add your OpenWeatherMap API key:
 
 ```
-const API_KEY = 'your_openweathermap_api_key_here';
+const API_KEY = 'fd68cbf3f73579b20466cd0ae476cba7';
 ```
 
 Start the backend server:
