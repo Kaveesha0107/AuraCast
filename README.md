@@ -180,10 +180,4 @@ http://localhost:3000
 
 ---
 
-## 📸 Screenshots 
 
-![alt text](image.png)
-![alt text](image-1.png)
-<video controls src="20260206-1140-06.0900508.mp4" title="Title"></video>
-
----
