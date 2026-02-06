@@ -10,7 +10,7 @@ app.use(cors());
 const API_KEY = 'fd68cbf3f73579b20466cd0ae476cba7';
 const cache = new NodeCache({ stdTTL: 300 }); // 5 minutes cache
 
-// --- Comfort Index Formula ---
+//  Comfort Index Formula 
 // Based on: Temperature (50%), Humidity (30%), Visibility (20%)
 // Ideal conditions: Temp 22°C, Humidity 45%, Visibility > 10km
 const getComfortScore = (tempC, humidity, visibility) => {
@@ -28,7 +28,7 @@ const getComfortScore = (tempC, humidity, visibility) => {
     return Math.round(finalScore);
 };
 
-// --- Generate Realistic Temperature Trend for Graphs ---
+// Generate Realistic Temperature Trend for Graphs
 const generateTemperatureTrend = (currentTemp, cityName) => {
     // Use city name to create consistent trend (same city = same trend)
     const nameHash = cityName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -52,7 +52,7 @@ const generateTemperatureTrend = (currentTemp, cityName) => {
     });
 };
 
-// --- Fetch Weather Data with Caching ---
+// Fetch Weather Data with Caching 
 app.get('/api/weather', async (req, res) => {
     let cacheStatus = "HIT";
     let weatherData = cache.get("weather_results");
@@ -140,7 +140,7 @@ app.get('/api/weather', async (req, res) => {
     });
 });
 
-// --- Debug Endpoint (Step 5 Requirement) ---
+// Debug Endpoint 
 app.get('/api/cache-debug', (req, res) => {
     const stats = cache.getStats();
     const cachedData = cache.get("weather_results");
