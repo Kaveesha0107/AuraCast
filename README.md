@@ -142,12 +142,6 @@ cd backend
 npm install
 ```
 
-Open `index.js` and add your OpenWeatherMap API key:
-
-```
-const API_KEY = 'fd68cbf3f73579b20466cd0ae476cba7';
-```
-
 Start the backend server:
 
 ```
